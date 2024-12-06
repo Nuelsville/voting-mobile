@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:testing/screens/candidates_screen.dart';
 import '../providers/position_provider.dart';
 import '../models/position.dart';
 // import 'candidates_screen.dart';
@@ -38,17 +39,17 @@ class _PositionsScreenState extends State<PositionsScreen> {
                 Position position = positionProvider.positions[index];
                 return ListTile(
                   title: Text(position.name),
-                  subtitle: Text(position.description),
+                  subtitle: Text(position.name),
                   trailing: Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     // Navigate to candidates screen
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) =>
-                    //         CandidatesScreen(positionId: position.id),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            CandidatesScreen(positionId: position.id),
+                      ),
+                    );
                   },
                 );
               },

@@ -6,10 +6,11 @@ import 'sign_in_screen.dart';
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    void _logout() async {
+      // Call signOut on AuthProvider
+      await Provider.of<AuthProvider>(context, listen: false).signOut();
 
-    void _signOut() async {
-      await authProvider.signOut();
+      // After signing out, navigate to SignInScreen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => SignInScreen()),
@@ -17,10 +18,11 @@ class ProfileScreen extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(title: Text('Profile')),
       body: Center(
-        child: Text(
-          'Profile Screen',
-          style: TextStyle(fontSize: 24),
+        child: ElevatedButton(
+          onPressed: _logout,
+          child: Text('Logout'),
         ),
       ),
     );

@@ -1,19 +1,25 @@
 class Position {
-  final String id;
+  final int id;
   final String name;
-  final String description;
+  final int votingYearId;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   Position({
     required this.id,
     required this.name,
-    required this.description,
+    required this.votingYearId,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   factory Position.fromJson(Map<String, dynamic> json) {
     return Position(
-      id: json['id'].toString(),
-      name: json['name'],
-      description: json['description'] ?? '',
+      id: json['id'],
+      name: json['name'] ?? '',
+      votingYearId: json['voting_year_id'],
+      createdAt: DateTime.parse(json['createdAt']),
+      updatedAt: DateTime.parse(json['updatedAt']),
     );
   }
 }
